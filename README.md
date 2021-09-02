@@ -10,3 +10,17 @@ FYI: (https://www.kite.com/python/answers/how-to-write-a-csv-file-by-column-in-p
 Additional Training Data
 1. run data.py make sure archive.zip is in current working directory
 2. will get a csv file output (vitals_data.csv)
+
+## Requirements
+1. Tensorflow
+2. Keras
+3. Pycharm Community Edition
+4. Anaconda
+
+## Getting started
+1. Open repo in pycharm and open `model`
+2. Run example:
+
+```
+python timeseries.py
+```

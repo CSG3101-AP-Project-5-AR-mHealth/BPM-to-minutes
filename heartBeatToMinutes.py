@@ -93,7 +93,8 @@ for i in distance_data:
     for j in combined_time_list:
         if i[0] == j:
             combined_distance_values.append(i[1])
-print("CHV is", combined_heart_values)
+print("CHV is")
+print("\n".join(combined_heart_values))
 print("CDV is", combined_distance_values)
 
 

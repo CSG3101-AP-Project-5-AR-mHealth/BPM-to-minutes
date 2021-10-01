@@ -1,0 +1,110 @@
+C:\Users\daied\AppData\Local\Programs\Python\Python39\python.exe C:/Users/daied/repos/BPM-to-minutes/model/timeseries.py
+2021-09-08 21:14:56.054499: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2021-09-08 21:14:56.054738: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+                     value.bpm
+dateTime                      
+2019-11-11 09:18:00       69.0
+2019-11-11 09:20:00       71.0
+2019-11-11 09:21:00       70.0
+2019-11-11 09:22:00       70.0
+2019-11-11 09:23:00       71.0
+[samples, time_steps, n_features]
+(184846, 30, 1) (184846, 1)
+2021-09-08 21:15:36.219489: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'nvcuda.dll'; dlerror: nvcuda.dll not found
+2021-09-08 21:15:36.219764: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2021-09-08 21:15:36.224041: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: DESKTOP-JGO3GGS
+2021-09-08 21:15:36.224532: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: DESKTOP-JGO3GGS
+2021-09-08 21:15:36.225240: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+encoder_1 (LSTM)             (None, 30, 256)           264192    
+_________________________________________________________________
+dropout (Dropout)            (None, 30, 256)           0         
+_________________________________________________________________
+encoder_2 (LSTM)             (None, 30, 128)           197120    
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 30, 128)           0         
+_________________________________________________________________
+encoder_3 (LSTM)             (None, 64)                49408     
+_________________________________________________________________
+encoder_decoder (RepeatVecto (None, 30, 64)            0         
+_________________________________________________________________
+decoder_1 (LSTM)             (None, 30, 64)            33024     
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 30, 64)            0         
+_________________________________________________________________
+decoder_2 (LSTM)             (None, 30, 128)           98816     
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 30, 128)           0         
+_________________________________________________________________
+decoder_3 (LSTM)             (None, 30, 256)           394240    
+_________________________________________________________________
+time_distributed (TimeDistri (None, 30, 1)             257       
+=================================================================
+Total params: 1,037,057
+Trainable params: 1,037,057
+Non-trainable params: 0
+_________________________________________________________________
+2021-09-08 21:15:38.149406: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
+Epoch 1/25
+650/650 [==============================] - 871s 1s/step - loss: 0.0502 - val_loss: 0.0432
+Epoch 2/25
+650/650 [==============================] - 854s 1s/step - loss: 0.0395 - val_loss: 0.0303
+Epoch 3/25
+650/650 [==============================] - 918s 1s/step - loss: 0.0315 - val_loss: 0.0296
+Epoch 4/25
+650/650 [==============================] - 899s 1s/step - loss: 0.0294 - val_loss: 0.0231
+Epoch 5/25
+650/650 [==============================] - 942s 1s/step - loss: 0.0258 - val_loss: 0.0248
+Epoch 6/25
+650/650 [==============================] - 924s 1s/step - loss: 0.0250 - val_loss: 0.0209
+Epoch 7/25
+650/650 [==============================] - 924s 1s/step - loss: 0.0238 - val_loss: 0.0203
+Epoch 8/25
+650/650 [==============================] - 923s 1s/step - loss: 0.0227 - val_loss: 0.0189
+Epoch 9/25
+650/650 [==============================] - 921s 1s/step - loss: 0.0221 - val_loss: 0.0204
+Epoch 10/25
+650/650 [==============================] - 922s 1s/step - loss: 0.0216 - val_loss: 0.0197
+Epoch 11/25
+650/650 [==============================] - 922s 1s/step - loss: 0.0208 - val_loss: 0.0172
+Epoch 12/25
+650/650 [==============================] - 922s 1s/step - loss: 0.0210 - val_loss: 0.0188
+Epoch 13/25
+650/650 [==============================] - 927s 1s/step - loss: 0.0196 - val_loss: 0.0181
+Epoch 14/25
+650/650 [==============================] - 925s 1s/step - loss: 0.0199 - val_loss: 0.0181
+Epoch 15/25
+650/650 [==============================] - 925s 1s/step - loss: 0.0185 - val_loss: 0.0163
+Epoch 16/25
+650/650 [==============================] - 926s 1s/step - loss: 0.0191 - val_loss: 0.0173
+Epoch 17/25
+650/650 [==============================] - 925s 1s/step - loss: 0.0181 - val_loss: 0.0174
+Epoch 18/25
+650/650 [==============================] - 926s 1s/step - loss: 0.0181 - val_loss: 0.0169
+Epoch 19/25
+650/650 [==============================] - 927s 1s/step - loss: 0.0181 - val_loss: 0.0165
+Epoch 20/25
+650/650 [==============================] - 925s 1s/step - loss: 0.0174 - val_loss: 0.0146
+Epoch 21/25
+650/650 [==============================] - 927s 1s/step - loss: 0.0176 - val_loss: 0.0148
+Epoch 22/25
+650/650 [==============================] - 928s 1s/step - loss: 0.0170 - val_loss: 0.0143
+Epoch 23/25
+650/650 [==============================] - 925s 1s/step - loss: 0.0171 - val_loss: 0.0155
+Epoch 24/25
+650/650 [==============================] - 927s 1s/step - loss: 0.0168 - val_loss: 0.0153
+Epoch 25/25
+650/650 [==============================] - 930s 1s/step - loss: 0.0163 - val_loss: 0.0148
+2021-09-09 03:38:56.134515: W tensorflow/python/util/util.cc:348] Sets are not currently considered sequences, but this may change in the future, so consider avoiding using them.
+WARNING:absl:Found untraced functions such as lstm_cell_layer_call_and_return_conditional_losses, lstm_cell_layer_call_fn, lstm_cell_1_layer_call_and_return_conditional_losses, lstm_cell_1_layer_call_fn, lstm_cell_2_layer_call_and_return_conditional_losses while saving (showing 5 of 30). These functions will not be directly callable after loading.
+5777/5777 [==============================] - 671s 116ms/step
+Plotting Test Data
+Calculating Error
+99th percentile loss value from training: 0.092
+43/43 [==============================] - 5s 116ms/step
+
+Process finished with exit code 0

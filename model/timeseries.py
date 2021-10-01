@@ -110,13 +110,17 @@ model.summary()
 
 # fitting on training data
 if not exists("saved_model"):
-    history = model.fit(X_train, X_train, epochs=1, batch_size=256,
+    history = model.fit(X_train, X_train, epochs=25, batch_size=256,
                         validation_split=0.1, verbose=1, shuffle=False)
     model.save("saved_model")
+    # TODO: Save history attribute for loss and accuracy
+    # with open('/trainHistoryDict', 'wb') as file_pi:
+    #     pickle.dump(history.history, file_pi)
 else:
     history = keras.models.load_model("saved_model")
 
-# plotting loss
+# TODO: Fix up all the figs in the model build
+# Plotting loss
 # fig = plt.figure()
 # plt.plot(history.history['loss'], label='Training loss')
 # plt.plot(history.history['val_loss'], label='Validation loss')
@@ -125,14 +129,14 @@ else:
 # plt.legend()
 # plt.show()
 
-# Predicting on test data
+# Predicting on training data
 X_pred = model.predict(X_train, verbose=1)
 X_pred_2d = pd.DataFrame(X_pred[:, 0, :]).astype(float)
 X_pred_2d.columns = ['HR Pred']
 X_train_2d = pd.DataFrame(X_train[:, 0, :]).astype(float)
 X_train_2d.columns = ['HR Test']
 
-# Plot the test data together
+# Plot the training data together
 print("Plotting Test Data")
 fig, axs = plt.subplots(2, figsize=(12, 6))
 axs[0].plot(X_pred_2d['HR Pred'])
@@ -151,12 +155,14 @@ predictions = X_pred_2d['HR Pred']
 train_inputs = X_train_2d['HR Test']
 anomaly = pd.DataFrame(np.abs(predictions.values - train_inputs.values))
 anomaly = anomaly.mean(axis=1)
+print("Anomaly Data")
+print(anomaly)
 ax = sns.displot(anomaly, kde=True)
 # ax.set_xlabel('Loss')
 # ax.set_ylabel('Frequency')
 
-threshold = round(np.quantile(anomaly, 0.98), 3)
-print('98th percentile loss value from training: ' + str(threshold))
+threshold = round(np.quantile(anomaly, 0.99), 3)
+print('99th percentile loss value from training: ' + str(threshold))
 
 # Predicting
 X_pred = model.predict(X_test, verbose=1)
